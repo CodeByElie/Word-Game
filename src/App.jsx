@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Send } from "lucide-react";
+import { useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const wordSize = 6;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="h-screen grid place-content-center bg-gray-100">
+      <div className="rounded-xl shadow-lg bg-white p-10 grid gap-10">
+        <div className={`grid grid-cols-6 gap-3 overflow-scroll max-h-87`}>
+          {Array.from({ length: wordSize * 6 }).map((_, i) => (
+            <div key={i} className="w-15 h-15 rounded-xl bg-gray-100"></div>
+          ))}
+        </div>
+        <div className="flex gap-3">
+          <input type="text" className="w-10/12 h-15 p-3 inset-shadow-sm focus:outline-none bg-gray-50 rounded-xl" placeholder="Word..."/>
+          <button className="w-2/12 h-15 bg-red-400 rounded-xl place-content-center grid cursor-pointer">
+            <Send className=" size-7 text-white"/>
+          </button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
